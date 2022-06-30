@@ -1,6 +1,11 @@
 /dotnet/resources/gamemode/bin/
 /dotnet/resources/gamemode/obj/
 /packages/
+/dotnet/runtime/
+
+server_exceptions.txt
+server_logs.txt
+
 riderModule.iml
 /_ReSharper.Caches/
 bin/
