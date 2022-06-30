@@ -1,0 +1,9 @@
+/dotnet/resources/gamemode/bin/
+/dotnet/resources/gamemode/obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+bin/
+BugTrap-x64.dll
+ragemp-server.exe
+linux_x64.tar.gz
