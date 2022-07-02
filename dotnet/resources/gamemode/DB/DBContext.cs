@@ -17,9 +17,10 @@ namespace DB
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
   
-            string connString = File.ReadAllText("C:\\RAGEMP\\server-files\\dotnet\\resources\\gamemode\\RpGamemode\\RpGamemode\\bin\\Debug\\netcoreapp3.1\\DB-CONFIG.txt");
-
-            optionsBuilder.UseMySQL(connString);
+            //string connString = File.ReadAllText("C:\\RAGEMP\\server-files\\dotnet\\resources\\gamemode\\RpGamemode\\RpGamemode\\bin\\Debug\\netcoreapp3.1\\DB-CONFIG.txt");
+            string connString = @"server=localhost;port=49153;database=server;user=root;password=mysqlpw";
+            //optionsBuilder.UseMySQL(connString);
+            optionsBuilder.UseMySql(connString);
             //@"server=localhost;port=49155;database=server;user=root;password=mysqlpw"
             //optionsBuilder.UseMySql(@"server=localhost;port=49153;database=server;user=root;password=mysqlpw");
         }
@@ -59,7 +60,7 @@ namespace DB
                 entity.HasKey(e => e.ID);
                 
                 entity.Property(e => e.name).IsRequired();
-                entity.Property(e => e.inGameModel).IsRequired();
+                entity.Property(e => e.hash).IsRequired();
                 entity.HasIndex(e => e.name).IsUnique();
             });
             modelBuilder.Entity<Character>(entity =>
@@ -89,7 +90,7 @@ namespace DB
                 entity.HasKey(e => e.ID);
                 entity.Property(e => e.name).IsRequired();
                 entity.Property(e => e.texture).IsRequired();
-                entity.Property(e => e.IsEatable).IsRequired();
+                entity.Property(e => e.isEatable).IsRequired();
                 entity.HasIndex(e => e.name).IsUnique();
 
             });

@@ -8,7 +8,7 @@ namespace DB
     {
         public int ID { get; set; }
         public string name { get; set; }
-        public string inGameModel { get; set; }
+        public string hash { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
     }
     

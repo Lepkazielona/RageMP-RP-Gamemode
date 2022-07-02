@@ -12,13 +12,15 @@ namespace RpGamemode
         public void OnResourceStart()
         {
             
-            
+           
             using (var context = new DB.DBContext())
             {
                 context.Database.EnsureCreated();
                 context.SaveChanges();
             }
+                /*
             new Inteface().createUser("Lpk", "asdasd", "aasdasd", 7, DateTime.Now);
+        */
         }
         [ServerEvent(Event.PlayerConnected)]
         public void OnPlayerConnected(Player player)

@@ -1,6 +1,6 @@
 var rotation = new mp.Vector3(0,0,0)
 var isFly = false;
-var player = mp.players.local;
+const player = mp.players.local;
 var rotation = new mp.Vector3(0,0,0);
 var speed = 0.5
 
