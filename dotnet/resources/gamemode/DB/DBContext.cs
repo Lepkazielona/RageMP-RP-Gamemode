@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using Microsoft.EntityFrameworkCore;
+using RpGamemode;
+using Tommy;
 
 
 namespace DB
@@ -17,12 +19,16 @@ namespace DB
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
   
-            //string connString = File.ReadAllText("C:\\RAGEMP\\server-files\\dotnet\\resources\\gamemode\\RpGamemode\\RpGamemode\\bin\\Debug\\netcoreapp3.1\\DB-CONFIG.txt");
-            string connString = @"server=localhost;port=49153;database=server;user=root;password=mysqlpw";
-            //optionsBuilder.UseMySQL(connString);
+
+            //string connString = @"server=localhost;port=49153;database=server;user=root;password=mysqlpw";
+            string connString;
+            using (var conf = new Main().ConfigReader)
+            {
+                TomlTable table = TOML.Parse(conf);
+                connString = table["Database"]["ConnString"];
+            }
             optionsBuilder.UseMySql(connString);
-            //@"server=localhost;port=49155;database=server;user=root;password=mysqlpw"
-            //optionsBuilder.UseMySql(@"server=localhost;port=49153;database=server;user=root;password=mysqlpw");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

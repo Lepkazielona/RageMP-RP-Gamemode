@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using GTANetworkAPI;
 using Microsoft.EntityFrameworkCore;
@@ -8,16 +9,18 @@ namespace RpGamemode
 {
     public class Main : Script
     {
+        public StreamReader ConfigReader = File.OpenText("config.toml");
+        
         [ServerEvent(Event.ResourceStart)]
         public void OnResourceStart()
         {
-            
-           
+/*
             using (var context = new DB.DBContext())
             {
                 context.Database.EnsureCreated();
                 context.SaveChanges();
             }
+ */
                 /*
             new Inteface().createUser("Lpk", "asdasd", "aasdasd", 7, DateTime.Now);
         */
