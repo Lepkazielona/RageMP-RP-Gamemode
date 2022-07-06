@@ -58,7 +58,7 @@ namespace DB
                 
                 entity.HasOne(d => d.CarModel)
                     .WithMany(p => p.Cars);
-                entity.HasOne(d => d.Characters)
+                entity.HasOne(d => d.Owner)
                     .WithMany(p => p.Cars);
             });
             modelBuilder.Entity<CarModel>(entity =>
@@ -66,7 +66,7 @@ namespace DB
                 entity.HasKey(e => e.ID);
                 
                 entity.Property(e => e.name).IsRequired();
-                entity.Property(e => e.hash).IsRequired();
+                entity.Property(e => e.model).IsRequired();
                 entity.HasIndex(e => e.name).IsUnique();
             });
             modelBuilder.Entity<Character>(entity =>

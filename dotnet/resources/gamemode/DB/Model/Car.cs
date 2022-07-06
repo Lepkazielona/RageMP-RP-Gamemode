@@ -7,8 +7,8 @@
         public int x { get; set; }
         public int y { get; set; }
         public int z { get; set; }
-        public int milage { get; set; }
+        public int mileage { get; set; }
         public virtual CarModel CarModel { get; set; }
-        public virtual Character Characters { get; set; }
+        public virtual Character Owner { get; set; }
     }
 }

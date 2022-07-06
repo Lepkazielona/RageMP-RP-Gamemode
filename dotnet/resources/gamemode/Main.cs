@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using GTANetworkAPI;
+
 using Microsoft.EntityFrameworkCore;
 using DB;
 
@@ -14,16 +15,17 @@ namespace RpGamemode
         [ServerEvent(Event.ResourceStart)]
         public void OnResourceStart()
         {
-/*
+
             using (var context = new DB.DBContext())
             {
                 context.Database.EnsureCreated();
                 context.SaveChanges();
+                Console.WriteLine("Datbase Synced");
             }
- */
-                /*
-            new Inteface().createUser("Lpk", "asdasd", "aasdasd", 7, DateTime.Now);
-        */
+            
+            /*
+        new Inteface().createUser("Lpk", "asdasd", "aasdasd", 7, DateTime.Now);
+    */
         }
         [ServerEvent(Event.PlayerConnected)]
         public void OnPlayerConnected(Player player)
