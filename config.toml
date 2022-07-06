@@ -1,2 +1,2 @@
-﻿[Database]
-ConnString = "server=localhost;port=49153;database=server;user=root;password=mysqlpw"
+[Database]
+ConnString = "server=localhost;port=3306;database=data;user=root;password=1111"
