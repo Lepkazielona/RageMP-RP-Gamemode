@@ -1,4 +1,4 @@
-# cef
+# cef-gui
 
 ## Project setup
 ```
