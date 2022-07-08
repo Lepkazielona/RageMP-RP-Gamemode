@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "typescript": "^4.7.4"
-  },
-  "devDependencies": {
-    "@types/ragemp-c": "github:CocaColaBear/types-ragemp-c#master"
-  }
-}
