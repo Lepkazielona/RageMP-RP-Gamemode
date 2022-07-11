@@ -3,9 +3,12 @@ require('gamemode/fly.js')
 mp.discord.update('Kiedyś wymyśle nazwę', 'sdkasndaksndnacksnkdnasknd')
 
 mp.events.add("playerReady", () => {
-    let gui = mp.browsers.new("package://web-gui/index.html#/gui")
+    let gui = mp.browsers.new("package://web-gui/index.html#/")
     mp.gui.chat.push("browser")
-    //gui.call('playerInCar', true)
-    //gui.execute('setPlayerInCar(true)');
-    gui.execute('playerInCar = true')
+    //gui.execute("app.togglePlayerInVeh(true)")
+    //gui.call('togglePlayerInVeh', true);
+    //gui.execute("this.app.$store.state.playerInfo.inVeh = true;")
+    //gui.reload(false)
+    //gui.execute("app.$router.MainView.alertTest()")
+    gui.execute('alert("asndnaksndnaksdanskndkansdnk")')
 });
