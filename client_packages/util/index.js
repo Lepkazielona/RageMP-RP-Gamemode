@@ -1,7 +1,7 @@
-require('gamemode/fly.js')
+"use strict";
 //require('./nametag.js')
-mp.discord.update('Kiedyś wymyśle nazwę', 'sdkasndaksndnacksnkdnasknd')
-
+require('util/fly');
+/*
 mp.events.add("playerReady", () => {
     let gui = mp.browsers.new("package://web-gui/index.html#/")
     mp.gui.chat.push("browser")
@@ -12,3 +12,4 @@ mp.events.add("playerReady", () => {
     //gui.execute("app.$router.MainView.alertTest()")
     gui.execute('alert("asndnaksndnaksdanskndkansdnk")')
 });
+*/ 
