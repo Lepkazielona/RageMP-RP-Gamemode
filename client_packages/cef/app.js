@@ -1,1 +1,18 @@
-(function(){"use strict";var e={509:function(e,n,r){var t=r(9242),o=r(3396);function u(e,n,r,t,u,i){const a=(0,o.up)("router-view");return(0,o.wg)(),(0,o.j4)(a)}var i=r(7139),a=(0,i.MT)({state:{playerInfo:{inVeh:!1,vehSpeed:0}},getters:{},mutations:{setVehSpeed(e,n){e.playerInfo.vehSpeed=n},togglePlayerInVeh(e,n){e.playerInfo.inVeh=n}},actions:{},modules:{}}),s={methods:{setInCar(e){this.$store.state.playerInfo.inVeh=e}}},c=r(89);const f=(0,c.Z)(s,[["render",u]]);var p=f,l=r(2483),d=r(2268);function v(e,n,r,t,u,i){const a=(0,o.up)("speedometer");return(0,o.wg)(),(0,o.iD)("div",null,[(0,o.Wm)(a),(0,o._)("p",null,(0,d.zw)(e.$store.state.playerInfo.inVeh),1)])}function h(e,n,r,t,u,i){return(0,o.wg)(),(0,o.iD)("p",null,"Speed go brrrr")}var b=(0,o.aZ)({name:"Speedometer"});const m=(0,c.Z)(b,[["render",h]]);var g=m,y=(0,o.aZ)({name:"MainView",components:{Speedometer:g},computed:{},methods:{function(){alert("bsbdajbsbdjabsdbajsbjdbajs")}}});const w=(0,c.Z)(y,[["render",v]]);var j=w;const O=[{path:"/",name:"home",component:j}],I=(0,l.p7)({history:(0,l.r5)(),routes:O});var V=I;(0,t.ri)(p).use(a).use(V).mount("#app")}},n={};function r(t){var o=n[t];if(void 0!==o)return o.exports;var u=n[t]={exports:{}};return e[t](u,u.exports,r),u.exports}r.m=e,function(){var e=[];r.O=function(n,t,o,u){if(!t){var i=1/0;for(f=0;f<e.length;f++){t=e[f][0],o=e[f][1],u=e[f][2];for(var a=!0,s=0;s<t.length;s++)(!1&u||i>=u)&&Object.keys(r.O).every((function(e){return r.O[e](t[s])}))?t.splice(s--,1):(a=!1,u<i&&(i=u));if(a){e.splice(f--,1);var c=o();void 0!==c&&(n=c)}}return n}u=u||0;for(var f=e.length;f>0&&e[f-1][2]>u;f--)e[f]=e[f-1];e[f]=[t,o,u]}}(),function(){r.n=function(e){var n=e&&e.__esModule?function(){return e["default"]}:function(){return e};return r.d(n,{a:n}),n}}(),function(){r.d=function(e,n){for(var t in n)r.o(n,t)&&!r.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:n[t]})}}(),function(){r.g=function(){if("object"===typeof globalThis)return globalThis;try{return this||new Function("return this")()}catch(e){if("object"===typeof window)return window}}()}(),function(){r.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)}}(),function(){var e={143:0};r.O.j=function(n){return 0===e[n]};var n=function(n,t){var o,u,i=t[0],a=t[1],s=t[2],c=0;if(i.some((function(n){return 0!==e[n]}))){for(o in a)r.o(a,o)&&(r.m[o]=a[o]);if(s)var f=s(r)}for(n&&n(t);c<i.length;c++)u=i[c],r.o(e,u)&&e[u]&&e[u][0](),e[u]=0;return r.O(f)},t=self["webpackChunkgui_src"]=self["webpackChunkgui_src"]||[];t.forEach(n.bind(null,0)),t.push=n.bind(null,t.push.bind(t))}();var t=r.O(void 0,[998],(function(){return r(509)}));t=r.O(t)})();
+/*
+ * cef Vue app component, main variables here 
+ */
+
+const { createApp } = Vue
+const app = createApp({
+    data() {
+        return {
+            message: 'Hello Vue',
+            count: 0,
+        }
+    },
+    methods: {
+        setMsg(){
+            this.message = 'Hello World'
+        }
+    },  
+}).mount('#app')

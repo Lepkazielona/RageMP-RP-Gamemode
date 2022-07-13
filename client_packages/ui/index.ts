@@ -1,1 +1,1 @@
-require('ui/Speedometer')
+//require('ui/Speedometer')
