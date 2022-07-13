@@ -1,6 +1,14 @@
 "use strict";
 //require('./nametag.js')
 require('util/fly');
+var cursor = false;
+/**
+ * Keybindings
+ */
+mp.keys.bind(192, false, () => {
+    cursor = !cursor;
+    mp.gui.cursor.show(cursor, cursor);
+});
 /*
 mp.events.add("playerReady", () => {
     let gui = mp.browsers.new("package://web-gui/index.html#/")
