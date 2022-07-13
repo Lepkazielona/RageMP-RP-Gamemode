@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpGamemode", "RpGamemode.csproj", "{A2E0F9F9-62EC-4476-B048-A383E0304B01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpGamemode", "RpGamemode.csproj", "{799B4079-522D-49F5-B4CC-4A70931F802E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A2E0F9F9-62EC-4476-B048-A383E0304B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2E0F9F9-62EC-4476-B048-A383E0304B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2E0F9F9-62EC-4476-B048-A383E0304B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2E0F9F9-62EC-4476-B048-A383E0304B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{799B4079-522D-49F5-B4CC-4A70931F802E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{799B4079-522D-49F5-B4CC-4A70931F802E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{799B4079-522D-49F5-B4CC-4A70931F802E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{799B4079-522D-49F5-B4CC-4A70931F802E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

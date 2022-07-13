@@ -3,11 +3,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using GTANetworkAPI;
 using Microsoft.EntityFrameworkCore;
 
 namespace DB
 {
+    
+    //TODO document all functions
+    //Someone should do this
+    //this code sucks ass :{
     public class Interface
     {
         public async Task<Exception> CreateUser(string nickname, string password, string passwordSol, int rank,
@@ -39,19 +45,27 @@ namespace DB
         }
         
          
-        public async Task<Exception> CreateVeh(int x, int y, int z, int mileage, int)
+        public async Task<Exception> CreateVeh(int characterId, int carModelId, Vector3 coords, int mileage)
         {
             try
             {
                 using (var context = new DBContext())
                 {
-                    context.Cars.AddAsync(new Car(
+                    var character = context.Characters
+                        .Where(b => b.ID.Equals(characterId))
+                        .ToList();
+                    var carModel = context.CarModels
+                        .Where(b => b.ID.Equals(carModelId))
+                        .ToList();
+                    
+                    await context.Cars.AddAsync(new Car
                     {
-                        x = x,
-                        y = y,
-                        z = z,
+                        x = (int) coords.X,
+                        y = (int) coords.Y,
+                        z = (int) coords.Z,
                         mileage = mileage,
-                        Owner = 
+                        Owner = character[0],
+                        CarModel = carModel[0]
                     });
                     await context.SaveChangesAsync();
                 }
@@ -65,13 +79,38 @@ namespace DB
             return null;
         }
          
+        /*
+         *
+         * Query stuff
+         * 
+         */
 
+        public async Task<DB.Car> searchCar(int carId)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var car = context.Cars
+                        .Where(b => b.ID.Equals(carId))
+                        .FirstOrDefaultAsync();
+                    return car.Result;
+                    //return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        
         /// <summary>
         ///  Returns model from database
         /// </summary>
         /// <param name="name">Name of car in DB</param>
         /// <returns>Return Tuple (CarModel, Exception)</returns>
-        public async Task<(List<CarModel>, Exception)> searchVehModel(int DBId)
+        public async Task<(CarModel, Exception)> searchVehModel(int DBId)
         {
             try
             {
@@ -80,7 +119,7 @@ namespace DB
                     var carModels = context.CarModels
                         .Where(b => b.ID.Equals(DBId))
                         .ToList();
-                    return (carModels, null);
+                    return (carModels[0], null);
                 }
             }
             catch (Exception e)

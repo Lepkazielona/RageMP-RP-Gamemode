@@ -51,11 +51,14 @@ namespace DB
             {
                 entity.HasKey(e => e.ID);
                 
-                entity.Property(e => e.milage).IsRequired();
+                entity.Property(e => e.mileage).IsRequired();
                 entity.Property(e => e.x).IsRequired();
                 entity.Property(e => e.y).IsRequired();
                 entity.Property(e => e.z).IsRequired();
-                
+                entity.Property(e => e.rot).IsRequired();
+                entity.Property(e => e.color1).IsRequired();
+                entity.Property(e => e.color2).IsRequired();
+
                 entity.HasOne(d => d.CarModel)
                     .WithMany(p => p.Cars);
                 entity.HasOne(d => d.Owner)
