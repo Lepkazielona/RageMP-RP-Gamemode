@@ -41,3 +41,7 @@ dist/**/*
 # ignore .lock
 yarn.lock
 package.lock
+
+
+#Other
+.listcache
