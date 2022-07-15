@@ -3,6 +3,8 @@
  */
 
 const { createApp } = Vue
+//import ChatBox  from "./components/ChatBox"
+
 const app = createApp({
     data() {
         return {
@@ -14,5 +16,9 @@ const app = createApp({
         setMsg(){
             this.message = 'Hello World'
         }
-    },  
+    },
+    components: {
+    }  
 }).mount('#app')
+
+

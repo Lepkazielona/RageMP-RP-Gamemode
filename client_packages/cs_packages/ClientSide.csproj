@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="rage-sharpN">
+        <HintPath>..\..\..\dotnet\rage-sharpN.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="cef\components" />
+      <Folder Include="ui" />
+    </ItemGroup>
+
+</Project>
