@@ -1,0 +1,56 @@
+﻿<head>
+    <!-- Alpine JS focus plugin !-->
+    <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine JS !-->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Axios JS !-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js" integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- store !-->
+    <script src="../store.js"></script>
+    <!-- Tailwind CSS !-->
+    <link rel="stylesheet" href="../css/out.css">
+    
+    <script>
+        Alpine.store('chat', {
+            converstion: [
+                {'author' : 'user', 'message' : 'Testowa wiadomość'},
+                {'author' : 'User 2', 'message' : 'Wiadomosc 2'},
+            ],
+            focusChat(){
+      
+            }
+        })
+    </script>
+</head>
+
+<body>
+<div x-data="{ message: '',
+            createMessage(){
+                converstion.push({ 'author': author, 'message': message});
+                 console.log(converstion);
+            }}" class="container">
+   
+    
+    <!-- Messages !-->
+    <div class="bg-neutral-200 rounded-lg text-black bg-opacity-75 py-2 px-2 scroll-smooth mt-2 ml-2 w-3/6">
+        <div x-ref="chatref" class="container overflow-y-scroll h-40 py-2 px-2">
+            <template x-for="i in $store.chat.converstion">
+                <div>
+                    <p ><span x-text="i.author"/></span> - <span x-text="i.message"></span></p>
+                </div>
+            </template>
+        </div>
+    
+    <!-- chat input !-->
+
+        <textarea x-ref="textbox"
+                @keydown.enter.prevent="$store.chat.converstion.push({ 'author': $store.playerInfo.nickname, 'message': message}); 
+                message = '';
+                setTimeout(() => { $refs.chatref.scrollTo(0, $refs.chatref.scrollHeight); next()}, 0);
+                //mp.trigger('Chat_Send_Message', message);
+                " 
+                style="resize: none" x-model="message" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
+    </div>
+</div>
+
+</body>

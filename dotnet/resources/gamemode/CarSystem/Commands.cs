@@ -6,8 +6,8 @@ namespace RpGamemode
     public class Commands : Script
     {
         //creates new temp vehicle
-        [Command("nveh", "/nveh [Car Model ID], color id 1 = 0, color id 2 = 0, rejestracja = null, przebieg = 0")]
-        public void CmdNVeh(Player player, int id,int color1 = 0, int color2 = 0, string plate = "JebacPis",  int mileage = 0)
+        [Command("nveh", "/nveh [Car Model ID], color id 1 = 120, color id 2 = 120, rejestracja = null, przebieg = 0")]
+        public void CmdNVeh(Player player, int id,int color1 = 120, int color2 = 120, string plate = "JebacPis",  int mileage = 0)
         {
             player.SendNotification("~b~Spawning your car...");
             new CarSystem().CreateTempVeh(id, player.Position.Around(2), player.Rotation.X, color1, color2, mileage, plate);
