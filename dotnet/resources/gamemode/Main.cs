@@ -28,11 +28,24 @@ namespace RpGamemode
     */
         }
 
-        [RemoteEvent("Server_Chat_Send_Message")]
+        [RemoteEvent("server::chat::sendMessage")]
         private void ChatSend(Player player, string message)
         {
-            NAPI.Chat.SendChatMessageToAll("asdasadsd");
+            Console.WriteLine("Napisano wiadomosc");
+            NAPI.Chat.SendChatMessageToAll($"{player.Name} - {message}");
+            OnChatMessage(player, message);
         }
+
+        [ServerEvent(Event.ChatMessage)]
+        private void OnChatMessage(Player player, String message)
+        {
+            foreach (Player p in NAPI.Pools.GetAllPlayers())
+            {
+                p.SendChatMessage("From server");
+                NAPI.ClientEvent.TriggerClientEvent(p, "client::chat::onMessage",player.Name, message);
+            }
+        }
+        
         [ServerEvent(Event.PlayerConnected)]
         public void OnPlayerConnected(Player player)
         {

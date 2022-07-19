@@ -3,13 +3,23 @@ document.addEventListener('alpine:init', () => {
         nickname: 'null',
         
     })
+  
+    
     Alpine.store('chat', {
         converstion: [
-            {'author' : 'user', 'message' : 'Testowa wiadomość'},
-            {'author' : 'User 2', 'message' : 'Wiadomosc 2'},
+            {'author' : 'user', 'message' : 'Testowa wiadomość', 'type': 'usermsg'},
+            {'author' : 'User 2', 'message' : 'Wiadomosc 2', 'type': 'usermsg'},
+            {'message' : "ANNOUNCEMENT", 'type': 'nouser'}
         ],
-        focusChat(){
-            focus($refs.textBox)
+        focusChat() {
+            document.getElementById('textbox').focus()
+        },
+        newMessage(nickname, message) {
+            this.converstion.push({ 'author': nickname, 'message': message})
+        },
+        clearChat() {
+            this.converstion = []
+            this.converstion.push({message: "test", type: "nouser"})
         }
     })
 })

@@ -11,10 +11,19 @@ namespace ClientSide.cef
         public Player _player = RAGE.Elements.Player.LocalPlayer;
         public CEF()
         {
-            Events.Add("Chat_Send_Message", (args =>
+            Events.Add("client::chat::messageSend", (args =>
             {
-                Events.CallRemote("Server_Chat_Send_Message", args[0]);
+                RAGE.Chat.Output("From client");
+                Events.CallRemote("server::chat::sendMessage", args[0]);
             }));
+            Events.Add("client::chat::onMessage", args =>
+            {
+                browser.ExecuteJs($"Alpine.store('chat').newMessage('{args[0]}', '{args[1]}')");
+            });
+            Events.Add("client::hideCursor", args =>
+            {
+                RAGE.Ui.Cursor.Visible = false;
+            });
             Events.OnPlayerReady += (() =>
             {
                // RAGE.Chat.Show(false);
@@ -23,6 +32,12 @@ namespace ClientSide.cef
                 browser.ExecuteJs("Alpine.store('playerInfo').nickname =' " + _player.Name.ToString() + "'");
             });
             
+
+            RAGE.Input.Bind(VirtualKeys.R, false, () =>
+            {
+                RAGE.Ui.Cursor.Visible = true;
+                browser.ExecuteJs("Alpine.store('chat').focusChat()");
+            });
             RAGE.Input.Bind(VirtualKeys.F5, false, () =>
             {
                 browser.Reload(false);

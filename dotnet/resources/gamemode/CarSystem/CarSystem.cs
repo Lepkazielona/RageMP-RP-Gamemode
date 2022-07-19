@@ -32,7 +32,7 @@ namespace RpGamemode
             int mileage, string plate = "JebacPis")
         {
             var vehModel = new Interface().searchVehModel(carModelId);
-            Vehicle veh = NAPI.Vehicle.CreateVehicle(NAPI.Util.VehicleNameToModel(vehModel.Result.Item1.model), cords, rot, color1, color2, plate);
+            Vehicle veh = NAPI.Vehicle.CreateVehicle(NAPI.Util.VehicleNameToModel(vehModel.Result.Item1.model), cords, rot, color1, color2, plate, engine: false);
             veh.SetData("isTemporary", true);
             return veh;
         }

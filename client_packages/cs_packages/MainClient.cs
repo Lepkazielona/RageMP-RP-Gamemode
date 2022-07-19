@@ -27,6 +27,16 @@ namespace ClientSide
                 cursor = !cursor;
                 RAGE.Ui.Cursor.Visible = cursor;
             });
+            RAGE.Input.Bind(VirtualKeys.K, true, () =>
+            {
+                _player.Vehicle.SetEngineOn(!_player.Vehicle.GetIsEngineRunning(), false, false);
+
+            });
+            RAGE.Input.Bind(VirtualKeys.N, true, () =>
+            {
+                _player.Vehicle.SetJetEngineOn(false);
+            });
+
         }
     }
 }

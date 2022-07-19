@@ -9,18 +9,6 @@
     <script src="../store.js"></script>
     <!-- Tailwind CSS !-->
     <link rel="stylesheet" href="../css/out.css">
-    
-    <script>
-        Alpine.store('chat', {
-            converstion: [
-                {'author' : 'user', 'message' : 'Testowa wiadomość'},
-                {'author' : 'User 2', 'message' : 'Wiadomosc 2'},
-            ],
-            focusChat(){
-      
-            }
-        })
-    </script>
 </head>
 
 <body>
@@ -36,18 +24,28 @@
         <div x-ref="chatref" class="container overflow-y-scroll h-40 py-2 px-2">
             <template x-for="i in $store.chat.converstion">
                 <div>
-                    <p ><span x-text="i.author"/></span> - <span x-text="i.message"></span></p>
+                    <template x-if="i.type = 'nouser'">
+                        <p ><span x-text="i.message"></span></p>
+                    </template>
+                    <template x-if="i.type = 'usermsg'">
+                        <p><span x-text="i.author"/></span> - <span x-text="i.message"></span></p>
+                    </template>
                 </div>
             </template>
         </div>
     
     <!-- chat input !-->
 
-        <textarea x-ref="textbox"
+        <textarea x-ref="textbox" id="textbox"
                 @keydown.enter.prevent="$store.chat.converstion.push({ 'author': $store.playerInfo.nickname, 'message': message}); 
+                mp.trigger('client::chat::messageSend', message);
+                mp.trigger('client::hideCursor');
                 message = '';
-                setTimeout(() => { $refs.chatref.scrollTo(0, $refs.chatref.scrollHeight); next()}, 0);
-                //mp.trigger('Chat_Send_Message', message);
+                setTimeout(() => { $refs.chatref.scrollTo(0, $refs.chatref.scrollHeight);}, 0);
+                $el.blur()
+                if ($store.chat.converstion.length > 40) {
+                    $store.chat.converstion.shift();
+                }
                 " 
                 style="resize: none" x-model="message" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"/>
     </div>
