@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RAGE;
 using RAGE.Elements;
 using RAGE.Ui;
@@ -7,17 +8,31 @@ namespace ClientSide.cef
 {
     public class CEF : Events.Script
     {
+        private ulong lastMessageTick = 0;
+        private bool chatOpen = false;
         public readonly RAGE.Ui.HtmlWindow browser = new RAGE.Ui.HtmlWindow("package://cs_packages/cef/MainGui.html");
         public Player _player = RAGE.Elements.Player.LocalPlayer;
         public CEF()
         {
-            Events.Add("client::chat::messageSend", (args =>
+            Events.Tick += Tick;
+
+            Events.Add("client::chat::messageSend", (args   =>
             {
+                string msg = args[0].ToString();
+                if (msg.StartsWith('/'))
+                {
+                    
+                }
                 RAGE.Chat.Output("From client");
                 Events.CallRemote("server::chat::sendMessage", args[0]);
             }));
+            Events.Add("client::closeChat", args =>
+            {
+                chatOpen = false;
+            });
             Events.Add("client::chat::onMessage", args =>
             {
+                browser.ExecuteJs("Alpine.store('chat').blur = false");
                 browser.ExecuteJs($"Alpine.store('chat').newMessage('{args[0]}', '{args[1]}')");
             });
             Events.Add("client::hideCursor", args =>
@@ -26,16 +41,23 @@ namespace ClientSide.cef
             });
             Events.OnPlayerReady += (() =>
             {
-               // RAGE.Chat.Show(false);
+                RAGE.Chat.Show(false);
                 activateBrowser(true);
+                chatOpen = true;
                 browser.MarkAsChat();
                 browser.ExecuteJs("Alpine.store('playerInfo').nickname =' " + _player.Name.ToString() + "'");
             });
             
 
-            RAGE.Input.Bind(VirtualKeys.R, false, () =>
+            RAGE.Input.Bind(VirtualKeys.T, false, () =>
             {
                 RAGE.Ui.Cursor.Visible = true;
+                browser.ExecuteJs("Alpine.store('chat').blur = false");
+                browser.ExecuteJs("Alpine.store('chat').focusChat()");
+            });
+            RAGE.Input.Bind(VirtualKeys.Escape, false, () =>
+            {
+               
                 browser.ExecuteJs("Alpine.store('chat').focusChat()");
             });
             RAGE.Input.Bind(VirtualKeys.F5, false, () =>
@@ -44,6 +66,19 @@ namespace ClientSide.cef
             });
         }
         
+        public void Tick(List<Events.TickNametagData> nametags)
+        {
+            lastMessageTick++;
+            if (lastMessageTick == 1000)
+            {
+                browser.ExecuteJs("Alpine.store('chat').blur = true");
+            }
+
+            if (chatOpen)
+            {
+                lastMessageTick = 0;
+            }
+        }
         
         
         

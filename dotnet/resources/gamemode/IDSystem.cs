@@ -6,25 +6,17 @@ namespace RpGamemode
 {
     public class IDSystem
     {
-        public List<string> IDList = new List<string>();
+        public List<Player> IDList = new List<Player>();
 
-        public void InitializeID(Player player)
+        public void initializeID(Player player)
         {
-            for (int i = 0; i < IDList.Count; i++)
-            {
-                if (IDList[i] == null)
-                {
-                    IDList[i] = player.Name;
-                }
-            } 
+            IDList.Add(player);
+            player.SetSharedData("ID", IDList.IndexOf(player));
         }
-        public Player getPlayerFromID(int id)
+
+        public int getID(Player player)
         {
-            return NAPI.Player.GetPlayerFromName(IDList[id]);
-        }
-        public int getIDFromPlayer(Player player)
-        {
-            return IDList.IndexOf(player.Name);
+            return player.GetSharedData<int>("ID");
         }
     }
 }

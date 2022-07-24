@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DB
 {
-    
     //TODO document all functions
     //Someone should do this
     //this code sucks ass :{
@@ -26,8 +25,6 @@ namespace DB
                     context.Users.AddAsync(new User
                     {
                         nickname = nickname,
-                        password = password,
-                        passwordSol = passwordSol,
                         creationDate = creationDate,
                         rank = rank,
                         gameTime = gametime

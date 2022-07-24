@@ -7,10 +7,15 @@ using Microsoft.EntityFrameworkCore;
 using DB;
 using Object = GTANetworkAPI.Object;
 
+///
+/// Registering Events Here
+/// 
+
 namespace RpGamemode
 {
     public class Main : Script
     {
+        private IDSystem _idSystem = new IDSystem();
         public StreamReader ConfigReader = File.OpenText("config.toml");
         
         [ServerEvent(Event.ResourceStart)]
@@ -31,9 +36,9 @@ namespace RpGamemode
         [RemoteEvent("server::chat::sendMessage")]
         private void ChatSend(Player player, string message)
         {
-            Console.WriteLine("Napisano wiadomosc");
+            Console.WriteLine($"[{_idSystem.getID(player)}]{player.Name} - {message}");
             NAPI.Chat.SendChatMessageToAll($"{player.Name} - {message}");
-            OnChatMessage(player, message);
+            //OnChatMessage(player, message);
         }
 
         [ServerEvent(Event.ChatMessage)]
@@ -41,21 +46,26 @@ namespace RpGamemode
         {
             foreach (Player p in NAPI.Pools.GetAllPlayers())
             {
-                p.SendChatMessage("From server");
-                NAPI.ClientEvent.TriggerClientEvent(p, "client::chat::onMessage",player.Name, message);
+                if (p.Position.DistanceTo(player.Position) > 15)
+                {
+                    p.SendChatMessage(player.Name, message);
+                    NAPI.ClientEvent.TriggerClientEvent(p, "client::chat::onMessage",player.Name, message);
+                }
             }
         }
         
         [ServerEvent(Event.PlayerConnected)]
         public void OnPlayerConnected(Player player)
         {
-            new IDSystem().InitializeID(player);
+            _idSystem.initializeID(player);
+            //new IDSystem().InitializeID(player);
         }
         
         [Command("myid", "/myid")]
         public void CMD_MyID(Player player)
         { 
-            player.SendNotification("twoje id   " + new IDSystem().getIDFromPlayer(player));
+            player.SendNotification("Twoje ID: " + player.GetSharedData<int>("ID"));
+            //player.SendNotification("twoje id   " + new IDSystem().getIDFromPlayer(player));
         }
         
     }

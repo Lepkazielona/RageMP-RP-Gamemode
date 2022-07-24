@@ -109,8 +109,9 @@ namespace DB
                 entity.Property(e => e.nickname).IsRequired();
                 entity.Property(e => e.creationDate).IsRequired();
                 entity.Property(e => e.rank).IsRequired();
-                entity.Property(e => e.password).IsRequired();
-                entity.Property(e => e.passwordSol).IsRequired();
+                entity.Property(e => e.dcUserId).IsRequired();
+                entity.Property(e => e.email).IsRequired();
+                entity.Property(e => e.iconUrl).IsRequired();
                 
                 entity.HasIndex(e => e.nickname).IsUnique();
             });

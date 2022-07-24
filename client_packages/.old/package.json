@@ -1,6 +1,0 @@
-{
-  "devDependencies": {
-    "@types/node": "^18.0.3",
-    "@types/ragemp-c": "github:CocaColaBear/types-ragemp-c#master"
-  }
-}

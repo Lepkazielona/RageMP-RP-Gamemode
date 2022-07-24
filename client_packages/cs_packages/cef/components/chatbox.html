@@ -20,14 +20,14 @@
    
     
     <!-- Messages !-->
-    <div class="bg-neutral-200 rounded-lg text-black bg-opacity-75 py-2 px-2 scroll-smooth mt-2 ml-2 w-3/6">
+    <div :class="$store.chat.blur ? 'opacity-25' : '' " class="bg-neutral-200 rounded-lg text-black bg-opacity-75 py-2 px-2 scroll-smooth mt-2 ml-2 w-1/3">
         <div x-ref="chatref" class="container overflow-y-scroll h-40 py-2 px-2">
             <template x-for="i in $store.chat.converstion">
                 <div>
-                    <template x-if="i.type = 'nouser'">
+                    <template x-if="i.type == 'nouser'">
                         <p ><span x-text="i.message"></span></p>
                     </template>
-                    <template x-if="i.type = 'usermsg'">
+                    <template x-if="i.type == 'usermsg'">
                         <p><span x-text="i.author"/></span> - <span x-text="i.message"></span></p>
                     </template>
                 </div>
@@ -36,8 +36,12 @@
     
     <!-- chat input !-->
 
-        <textarea x-ref="textbox" id="textbox"
-                @keydown.enter.prevent="$store.chat.converstion.push({ 'author': $store.playerInfo.nickname, 'message': message}); 
+        <textarea x-ref="textbox" id="textbox" 
+                @keydown.esc.prevent="message =''; $el.blur(); mp.trigger('client::hideCursor'); "
+                @keydown.enter.prevent="
+                if (message != ''){
+                    $store.chat.converstion.push({ 'author': $store.playerInfo.nickname, 'message': message, type: 'usermsg'}); 
+                }
                 mp.trigger('client::chat::messageSend', message);
                 mp.trigger('client::hideCursor');
                 message = '';
