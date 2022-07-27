@@ -43,7 +43,7 @@
                     $store.chat.converstion.push({ 'author': $store.playerInfo.nickname, 'message': message, type: 'usermsg'}); 
                 }
                 mp.trigger('client::chat::messageSend', message);
-                mp.trigger('client::hideCursor');
+                mp.trigger('client::hideChat');
                 message = '';
                 setTimeout(() => { $refs.chatref.scrollTo(0, $refs.chatref.scrollHeight);}, 0);
                 $el.blur()

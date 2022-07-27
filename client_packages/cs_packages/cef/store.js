@@ -6,7 +6,7 @@ document.addEventListener('alpine:init', () => {
   
     
     Alpine.store('chat', {
-        blur: false,
+        blur: true,
         converstion: [
             //{'author' : 'user', 'message' : 'Testowa wiadomość', 'type': 'usermsg'},
             //{'author' : 'User 2', 'message' : 'Wiadomosc 2', 'type': 'usermsg'},
