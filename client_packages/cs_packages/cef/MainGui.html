@@ -7,7 +7,8 @@
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Tailwind CSS !-->
     <link rel="stylesheet" href="./css/out.css">
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Axios JS !-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
@@ -23,8 +24,10 @@
         <div x-html="(await axios.get(`./components/chatbox.html`)).data"></div>
         !-->
         <div x-html="(await getUrl(`components/chatbox.html`)).data"></div>
-        
-
+        <button type="button" class="py-2 px-6 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-opacity-75">HUJ</button>
+        <button type="button" class="py-2 px-6 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">HUJ</button>
+        <button type="button" class="py-2 px-6 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">HUJ</button>
+        <button type="button" class="py-2 px-6 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">HUJ</button>
 
     </div>
     <script>

@@ -41,7 +41,7 @@ namespace ClientSide.cef
             });
             Events.OnPlayerReady += (() =>
             {
-                RAGE.Chat.Show(false);
+                RAGE.Chat.Show(true);
                 activateBrowser(true);
                 chatOpen = true;
                 browser.MarkAsChat();
