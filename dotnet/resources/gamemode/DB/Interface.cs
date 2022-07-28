@@ -3,10 +3,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using GTANetworkAPI;
 using Microsoft.EntityFrameworkCore;
+using Task = System.Threading.Tasks.Task;
 
 namespace DB
 {
@@ -105,7 +106,7 @@ namespace DB
         /// <summary>
         ///  Returns model from database
         /// </summary>
-        /// <param name="name">Name of car in DB</param>
+        /// <param name="DBId">Id of model in DB</param>
         /// <returns>Return Tuple (CarModel, Exception)</returns>
         public async Task<(CarModel, Exception)> searchVehModel(int DBId)
         {
@@ -128,5 +129,55 @@ namespace DB
             }
         }
 
+        public async Task createCharacter(string name, string surname, int age, int ownerID, int money = 0)
+        {
+            await using (var context = new DBContext())
+            {
+                var users = context.Users
+                    .Where(b => b.ID.Equals(ownerID))
+                    .ToList();
+                await context.Characters.AddAsync(new Character
+                {
+                    name = name,
+                    surname = surname,
+                    money = money,
+                    age = age,
+                    User = users[0]
+                });
+            }
+        }
+
+        public async Task<List<Character>> searchCharacter(int ID = -1, int ownerId = -1)
+        {
+            try
+            {
+                if (ID != -1)
+                {
+                    await using (var context = new DBContext())
+                    {
+                        var characters = context.Characters
+                            .Where(b => b.ID.Equals(ID))
+                            .ToList();
+                        return characters;
+                    }
+                }
+                else if(ownerId != -1)
+                {
+                    await using (var context = new DBContext())
+                    {
+                        var characters = context.Characters
+                            .Where(b => b.ID.Equals(ID))
+                            .ToList();
+                        return characters;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            return null;
+        }
     }
 }

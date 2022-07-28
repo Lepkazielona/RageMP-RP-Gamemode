@@ -59,6 +59,7 @@ namespace RpGamemode
         {
             _idSystem.initializeID(player);
             //new IDSystem().InitializeID(player);
+            
         }
         
         [Command("myid", "/myid")]
