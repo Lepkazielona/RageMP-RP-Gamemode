@@ -32,14 +32,12 @@ namespace ClientSide.cef
             });
             Events.Add("client::chat::onMessage", args =>
             {
-                lastMessageTick = 0;
                 browser.ExecuteJs("Alpine.store('chat').blur = false");
                 browser.ExecuteJs($"Alpine.store('chat').newMessage('{args[0]}', '{args[1]}')");
             });
-            Events.Add("client::hideChat", args =>
+            Events.Add("client::hideCursor", args =>
             {
                 RAGE.Ui.Cursor.Visible = false;
-                chatOpen = false;
             });
             Events.OnPlayerReady += (() =>
             {
@@ -59,8 +57,8 @@ namespace ClientSide.cef
             });
             RAGE.Input.Bind(VirtualKeys.Escape, false, () =>
             {
+               
                 browser.ExecuteJs("Alpine.store('chat').focusChat()");
-                
             });
             RAGE.Input.Bind(VirtualKeys.F5, false, () =>
             {
@@ -75,6 +73,7 @@ namespace ClientSide.cef
             {
                 browser.ExecuteJs("Alpine.store('chat').blur = true");
             }
+
             if (chatOpen)
             {
                 lastMessageTick = 0;

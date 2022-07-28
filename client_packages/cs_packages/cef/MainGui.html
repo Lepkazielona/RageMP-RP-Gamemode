@@ -22,20 +22,15 @@
     <div x-data="{}">
 
         <!--
-        <div x-html="const chatbox = './components/chatbox.html'; chatbox"></div>
-        <div x-html="(await axios.get(`./components/chatbox.html`)).data"></div>
-        !-->
-        
-        <div x-html="(await getUrl(`components/chatbox.html`)).data"></div>
-        
-        <button type="button" class="py-2 px-6 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-opacity-75">HUJ</button>
-        <button type="button" class="py-2 px-6 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">HUJ</button>
-        <button type="button" class="py-2 px-6 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">HUJ</button>
-        <button type="button" class="py-2 px-6 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">HUJ</button>
+    <div x-html="const chatbox = './components/chatbox.html'; chatbox"></div>
+    <div x-html="(await axios.get(`./components/chatbox.html`)).data"></div>
+    !-->
 
+        <div x-html="(await getUrl(`components/chatbox.html`)).data"></div>
+        <div class="absolute top-0 right-0 mt-6" x-html="(await getUrl(`components/hud.html`)).data"></div>
     </div>
     <script>
-        var prod = false
+        var prod = true
         function getUrl(url){
             if(prod){
                 return axios.get(`http://package/cs_packages/cef/${url}`);
