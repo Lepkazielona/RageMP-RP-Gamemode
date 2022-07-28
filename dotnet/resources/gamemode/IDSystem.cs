@@ -10,8 +10,14 @@ namespace RpGamemode
 
         public void initializeID(Player player)
         {
-            IDList.Add(player);
-            player.SetSharedData("ID", IDList.IndexOf(player));
+            foreach (var p in IDList)
+            {
+                if (p == null)
+                {
+                    IDList.Insert(IDList.IndexOf(p), player);
+                    player.SetSharedData("ID", IDList.IndexOf(player));
+                }
+            }
         }
 
         public int getID(Player player)
