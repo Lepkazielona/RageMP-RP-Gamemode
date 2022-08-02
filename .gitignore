@@ -5,7 +5,7 @@
 
 server_exceptions.txt
 server_logs.txt
-config.toml
+conf.toml
 
 riderModule.iml
 /_ReSharper.Caches/
