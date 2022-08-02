@@ -16,7 +16,8 @@ namespace ClientSide.cef
         {
             Events.OnPlayerReady += (() =>
             {
-                RAGE.Chat.Show(true);
+                RAGE.Chat.Activate(false);
+                RAGE.Chat.Show(false);
                 //browser.Active(true);
                 browser.MarkAsChat();
                 browser.ExecuteJs("Alpine.store('playerInfo').nickname =' " + _player.Name.ToString() + "'");

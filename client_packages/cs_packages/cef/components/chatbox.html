@@ -37,7 +37,7 @@
     <!-- chat input !-->
 
         <textarea x-ref="textbox" id="textbox"
-                  @keydown.y.prevent="$store.chat.message =''; $el.blur(); 
+                  @keydown.t.prevent="$store.chat.message =''; $el.blur(); 
                   //mp.trigger('client::closeChat'); 
 "
                   @keydown.enter.prevent="

@@ -16,7 +16,7 @@ namespace ClientSide.cef
             });
             Events.Add("client::chat::sendMessageToServer", sendMessageToServer);
             Events.Add("client::chat::sendMessageToCef", sendMessageToCef);
-            RAGE.Input.Bind(VirtualKeys.Y, false, toggleChat);
+            RAGE.Input.Bind(VirtualKeys.T, false, toggleChat);
         }
         
         
