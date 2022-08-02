@@ -12,10 +12,14 @@ document.addEventListener('alpine:init', () => {
             //{'author' : 'User 2', 'message' : 'Wiadomosc 2', 'type': 'usermsg'},
             //{'message' : "ANNOUNCEMENT", 'type': 'nouser'}
         ],
+        message: '',
+        clearChat(){
+          this.message = ''
+        },
         focusChat() {
             document.getElementById('textbox').focus()
         },
-        newMessage(nickname, message) {
+        usrMsg(nickname, message) {
             this.converstion.push({ 'author': nickname, 'message': message})
         },
         clearChat() {

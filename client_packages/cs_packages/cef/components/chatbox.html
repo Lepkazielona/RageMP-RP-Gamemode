@@ -37,21 +37,21 @@
     <!-- chat input !-->
 
         <textarea x-ref="textbox" id="textbox"
-                  @keydown.esc.prevent="message =''; $el.blur(); mp.trigger('client::hideCursor'); "
+                  @keydown.y.prevent="message =''; $el.blur(); mp.trigger('client::closeChat'); "
                   @keydown.enter.prevent="
-                  if (message !='' ){
-                  $store.chat.converstion.push({ 'author' : $store.playerInfo.nickname, 'message' : message, type: 'usermsg' });
+                  if ($store.chat.message !='' ){
+                    $store.chat.converstion.push({ 'author' : $store.playerInfo.nickname, 'message' : $store.chat.message, type: 'usermsg' });
+                    mp.trigger('client::chat::messageSend', message);
                   }
-                  mp.trigger('client::chat::messageSend', message);
-                  mp.trigger('client::hideCursor');
-                  message='' ;
+                  mp.trigger('client::closeChat');
+                  $store.chat.message='' ;
                   setTimeout(()=> { $refs.chatref.scrollTo(0, $refs.chatref.scrollHeight);}, 0);
-                $el.blur()
-                if ($store.chat.converstion.length > 40) {
+                  $el.blur()
+                  if ($store.chat.converstion.length > 40) {
                     $store.chat.converstion.shift();
-                }
+                  }
                 " 
-                style="resize: none" x-model="message" class="mt-1 px-3 py-2 bg-slate-600 border shadow-sm border-slate-600 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:ring-white block w-full rounded-md sm:text-sm focus:ring-1 text-white"/>
+                style="resize: none" x-model="$store.chat.message" class="mt-1 px-3 py-2 bg-slate-600 border shadow-sm border-slate-600 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:ring-white block w-full rounded-md sm:text-sm focus:ring-1 text-white"/>
     </div>
 </div>
 
