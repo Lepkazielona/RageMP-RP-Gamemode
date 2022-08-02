@@ -37,9 +37,7 @@
     <!-- chat input !-->
 
         <textarea x-ref="textbox" id="textbox"
-                  @keydown.t.prevent="$store.chat.message =''; $el.blur(); 
-                  //mp.trigger('client::closeChat'); 
-"
+                  @keydown.esc.prevent="$store.chat.message =''; $el.blur(); mp.trigger('client::chat::closeChat');"
                   @keydown.enter.prevent="
                   if ($store.chat.message.startsWith('/')){
                     mp.invoke('command', $store.chat.message.substring(1))

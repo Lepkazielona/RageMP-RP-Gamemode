@@ -9,11 +9,8 @@ namespace ClientSide.cef
         public ChatClient()
         {
             Events.Tick += Tick;
-            Events.Add("client::closeChat", args =>
-            {
-                RAGE.Ui.Cursor.Visible = false;
-                _chatOpen = false;
-            });
+            Events.Add("client::chat::closeChat", closeChat);
+            
             Events.Add("client::chat::sendMessageToServer", sendMessageToServer);
             Events.Add("client::chat::sendMessageToCef", sendMessageToCef);
             RAGE.Input.Bind(VirtualKeys.T, false, toggleChat);
@@ -22,6 +19,21 @@ namespace ClientSide.cef
         
         private bool _chatOpen = false;
         private int _lastMessageTick = 0;
+
+
+        private void openChat()
+        {
+            _chatOpen = true;
+            CEF.browser.ExecuteJs("Alpine.store('chat').blur = false");
+            CEF.browser.ExecuteJs("Alpine.store('chat').focusChat()");
+
+        }
+
+        private void closeChat(object[] args)
+        {
+            _chatOpen = false;
+            RAGE.Ui.Cursor.Visible = false;
+        }
         
         private void toggleChat()
         {
@@ -31,7 +43,7 @@ namespace ClientSide.cef
                 CEF.browser.ExecuteJs("Alpine.store('chat').blur = false");
                 CEF.browser.ExecuteJs("Alpine.store('chat').focusChat()");
             }
-            
+
             RAGE.Ui.Cursor.Visible = _chatOpen;
         }
         private void sendMessageToServer(object[] args)
@@ -48,8 +60,9 @@ namespace ClientSide.cef
         // chat blur
         private void Tick(List<Events.TickNametagData> nametags)
         {
-            
+            RAGE.Game.Pad.DisableControlAction(32, 200, true);
             _lastMessageTick++;
+            
             if (_lastMessageTick == 1000)
             {
                 CEF.browser.ExecuteJs("Alpine.store('chat').blur = true");
@@ -59,7 +72,6 @@ namespace ClientSide.cef
             {
                 _lastMessageTick = 0;
             }
-             
         }
     }
 }
