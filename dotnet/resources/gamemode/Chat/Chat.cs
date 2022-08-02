@@ -30,8 +30,15 @@ namespace RpGamemode
     */
         [RemoteEvent("server::chat::sendChatMessage")]
         private void sendChatMessage(Player player, object[] args)
-        { 
-            NAPI.ClientEvent.TriggerClientEventInRange(player.Position, 5, "client::chat::sendMessageToCef", player.Name ,args[0]);
+        {
+            if (args[0].ToString().StartsWith("/"))
+            {
+                
+            }
+            else
+            {
+                NAPI.ClientEvent.TriggerClientEventInRange(player.Position, 5, "client::chat::sendMessageToCef", player.Name ,args[0]);
+            }
         }
     }
 }

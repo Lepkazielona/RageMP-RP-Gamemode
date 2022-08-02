@@ -15,7 +15,7 @@ namespace RpGamemode
 {
     public class Main : Script
     {
-        private IDSystem _idSystem = new IDSystem();
+        //private IDSystem _idSystem = new IDSystem();
         public StreamReader ConfigReader = File.OpenText("config.toml");
         
         [ServerEvent(Event.ResourceStart)]
@@ -36,9 +36,7 @@ namespace RpGamemode
         [ServerEvent(Event.PlayerConnected)]
         public void OnPlayerConnected(Player player)
         {
-            _idSystem.initializeID(player);
-            //new IDSystem().InitializeID(player);
-            
+            IDSystem.initializeID(player);
         }
         
         [Command("myid", "/myid")]

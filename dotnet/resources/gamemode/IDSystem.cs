@@ -6,9 +6,9 @@ namespace RpGamemode
 {
     public class IDSystem
     {
-        public List<Player> IDList = new List<Player>();
+        public static List<Player> IDList = new List<Player>();
 
-        public void initializeID(Player player)
+        public static void initializeID(Player player)
         {
             foreach (var p in IDList)
             {
@@ -20,7 +20,7 @@ namespace RpGamemode
             }
         }
 
-        public int getID(Player player)
+        public static int getID(Player player)
         {
             return player.GetSharedData<int>("ID");
         }
