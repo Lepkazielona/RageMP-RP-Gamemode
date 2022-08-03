@@ -14,9 +14,9 @@ document.addEventListener('alpine:init', () => {
         ],
         message: '',
         closeChat(){
-            this.message = ""
-            $ref.textbox.blur()
-            document.getElementById('textbox').blur()
+            this.message = ''
+            $refs.textbox.blur()
+            //document.getElementById('textbox').blur()
         },
         openChat(){
             this.blur = false;

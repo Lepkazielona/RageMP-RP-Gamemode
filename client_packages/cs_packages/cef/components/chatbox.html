@@ -16,7 +16,8 @@
             createMessage(){
                 converstion.push({ 'author': author, 'message': message});
                  console.log(converstion);
-            }}" class="container">
+            }}" class="container"
+            >
    
     
     <!-- Messages !-->
@@ -38,10 +39,12 @@
                  @keydown="if($event.code = 'Backquote'){
                                 $store.chat.message =''; $el.blur(); mp.trigger('client::chat::closeChat');
                               } "
+                                                @keydown="console.log($event);  if($event.keyCode == 192)$store.chat.closeChat()"
+
     !-->
 
         <textarea x-ref="textbox" id="textbox"
-                  
+                  @keydown="if($event.keyCode == 192)$store.chat.closeChat()"
                   @keydown.enter.prevent="
                   if ($store.chat.message.startsWith('/')){
                     mp.invoke('command', $store.chat.message.substring(1))

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using RAGE;
 using RAGE.Ui;
 
@@ -14,7 +15,7 @@ namespace ClientSide.cef
             Events.Add("client::chat::sendMessageToServer", sendMessageToServer);
             Events.Add("client::chat::sendMessageToCef", sendMessageToCef);
             RAGE.Input.Bind(VirtualKeys.T, false, openChat);
-            RAGE.Input.Bind(192, false, closeChat);
+            //RAGE.Input.Bind(192, false, closeChat);
         }
         
         
@@ -25,6 +26,7 @@ namespace ClientSide.cef
         private void openChat()
         {
             _chatOpen = true;
+            RAGE.Ui.Cursor.Visible = true;
             CEF.browser.ExecuteJs("Alpine.store('chat').openChat()");
         }
 
@@ -42,6 +44,8 @@ namespace ClientSide.cef
 
         private void sendMessageToCef(object[] args)
         {
+            _lastMessageTick = 0;
+            CEF.browser.ExecuteJs("Alpine.store('chat').blur = false");
             CEF.browser.ExecuteJs($"Alpine.store('chat').usrMsg('{args[0]}', '{args[1]}')");
         }
 
@@ -59,6 +63,11 @@ namespace ClientSide.cef
                 CEF.browser.ExecuteJs("Alpine.store('chat').blur = true");
             }
 
+            if (_lastMessageTick == 3000)
+            { 
+                _lastMessageTick = 1000;
+            }
+            
             if (_chatOpen)
             {
                 _lastMessageTick = 0;
