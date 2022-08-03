@@ -13,6 +13,15 @@ document.addEventListener('alpine:init', () => {
             //{'message' : "ANNOUNCEMENT", 'type': 'nouser'}
         ],
         message: '',
+        closeChat(){
+            this.message = ""
+            $ref.textbox.blur()
+            document.getElementById('textbox').blur()
+        },
+        openChat(){
+            this.blur = false;
+            document.getElementById('textbox').focus()
+        },
         clearChat(){
           this.message = ''
         },

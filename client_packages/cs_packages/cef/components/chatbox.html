@@ -35,11 +35,10 @@
         </div>
     
     <!-- chat input
-     @keydown="if($event.code = 'Backquote'){
-                    $store.chat.message =''; $el.blur(); mp.trigger('client::chat::closeChat');
-                  }
-                  "
-     !-->
+                 @keydown="if($event.code = 'Backquote'){
+                                $store.chat.message =''; $el.blur(); mp.trigger('client::chat::closeChat');
+                              } "
+    !-->
 
         <textarea x-ref="textbox" id="textbox"
                   
@@ -50,11 +49,11 @@
                   } else {
                       if ($store.chat.message !='' ){
                         $store.chat.converstion.push({ 'author' : $store.playerInfo.nickname, 'message' : $store.chat.message, type: 'usermsg' });
-                        mp.trigger('client::chat::messageSend', message);
+                        mp.trigger('client::chat::sendMessageToServer', $store.chat.message);
                       }
                   } 
                   
-                  mp.trigger('client::closeChat');
+                  //mp.trigger('client::closeChat');
                   $store.chat.message='' ;
                   setTimeout(()=> { $refs.chatref.scrollTo(0, $refs.chatref.scrollHeight);}, 0);
                   $el.blur()
