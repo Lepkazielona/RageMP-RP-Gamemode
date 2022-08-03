@@ -34,10 +34,15 @@
             </template>
         </div>
     
-    <!-- chat input !-->
+    <!-- chat input
+     @keydown="if($event.code = 'Backquote'){
+                    $store.chat.message =''; $el.blur(); mp.trigger('client::chat::closeChat');
+                  }
+                  "
+     !-->
 
         <textarea x-ref="textbox" id="textbox"
-                  @keydown.esc.prevent="$store.chat.message =''; $el.blur(); mp.trigger('client::chat::closeChat');"
+                  
                   @keydown.enter.prevent="
                   if ($store.chat.message.startsWith('/')){
                     mp.invoke('command', $store.chat.message.substring(1))

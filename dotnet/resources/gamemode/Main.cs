@@ -37,6 +37,8 @@ namespace RpGamemode
         public void OnPlayerConnected(Player player)
         {
             IDSystem.initializeID(player);
+            Console.WriteLine(player.SocialClubId);
+            Console.WriteLine(player.SocialClubName);
         }
         
         [Command("myid", "/myid")]

@@ -58,9 +58,10 @@ namespace ClientSide.cef
 
 
         // chat blur
+        
         private void Tick(List<Events.TickNametagData> nametags)
         {
-            RAGE.Game.Pad.DisableControlAction(32, 200, true);
+            //RAGE.Game.Pad.DisableControlAction(32, 200, true);
             _lastMessageTick++;
             
             if (_lastMessageTick == 1000)
