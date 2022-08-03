@@ -48,7 +48,7 @@
                     $store.chat.converstion.push({ 'message' : $store.chat.message, type: 'nouser' });
                   } else {
                       if ($store.chat.message !='' ){
-                        $store.chat.converstion.push({ 'author' : $store.playerInfo.nickname, 'message' : $store.chat.message, type: 'usermsg' });
+                        //$store.chat.converstion.push({ 'author' : $store.playerInfo.nickname, 'message' : $store.chat.message, type: 'usermsg' });
                         mp.trigger('client::chat::sendMessageToServer', $store.chat.message);
                       }
                   } 
