@@ -50,6 +50,7 @@ namespace ClientSide.cef
         
         private void Tick(List<Events.TickNametagData> nametags)
         {
+            //CEF.browser.ExecuteJs($"Alpine.store('chat').usrMsg('sss','aaa')");
             //RAGE.Game.Pad.DisableControlAction(32, 200, true);
             _lastMessageTick++;
             

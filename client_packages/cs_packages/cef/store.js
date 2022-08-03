@@ -29,7 +29,7 @@ document.addEventListener('alpine:init', () => {
             document.getElementById('textbox').focus()
         },
         usrMsg(nickname, message) {
-            this.converstion.push({ 'author': nickname, 'message': message})
+            this.converstion.push({ 'author': nickname, 'message': message, 'type': 'usermsg' })
         },
         clearChat() {
             this.converstion = []
