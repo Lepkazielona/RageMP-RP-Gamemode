@@ -21,7 +21,7 @@ namespace RpGamemode
         [ServerEvent(Event.ResourceStart)]
         public void OnResourceStart()
         {
-
+            
             using (var context = new DB.DBContext())
             {
                 context.Database.EnsureCreated();

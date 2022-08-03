@@ -9,11 +9,12 @@ namespace ClientSide.cef
         public ChatClient()
         {
             Events.Tick += Tick;
-            Events.Add("client::chat::closeChat", closeChat);
+            //Events.Add("client::chat::closeChat", closeChat);
             
             Events.Add("client::chat::sendMessageToServer", sendMessageToServer);
             Events.Add("client::chat::sendMessageToCef", sendMessageToCef);
-            RAGE.Input.Bind(VirtualKeys.T, false, toggleChat);
+            RAGE.Input.Bind(VirtualKeys.T, false, openChat);
+            RAGE.Input.Bind(192, false, closeChat);
         }
         
         
@@ -24,28 +25,16 @@ namespace ClientSide.cef
         private void openChat()
         {
             _chatOpen = true;
-            CEF.browser.ExecuteJs("Alpine.store('chat').blur = false");
-            CEF.browser.ExecuteJs("Alpine.store('chat').focusChat()");
-
+            CEF.browser.ExecuteJs("Alpine.store('chat').openChat()");
         }
 
-        private void closeChat(object[] args)
+        private void closeChat()
         {
             _chatOpen = false;
             RAGE.Ui.Cursor.Visible = false;
+            CEF.browser.ExecuteJs("Alpine.store('chat').closeChat()");
         }
         
-        private void toggleChat()
-        {
-            _chatOpen = !_chatOpen;
-            if (_chatOpen)
-            {
-                CEF.browser.ExecuteJs("Alpine.store('chat').blur = false");
-                CEF.browser.ExecuteJs("Alpine.store('chat').focusChat()");
-            }
-
-            RAGE.Ui.Cursor.Visible = _chatOpen;
-        }
         private void sendMessageToServer(object[] args)
         {
             RAGE.Events.CallRemote("server::chat::sendChatMessage", args[0]);
