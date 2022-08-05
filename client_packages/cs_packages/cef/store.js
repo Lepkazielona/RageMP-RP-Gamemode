@@ -3,7 +3,10 @@ document.addEventListener('alpine:init', () => {
         nickname: 'null',
         
     })
-  
+    Alpine.store('hud', {
+        hide: true,
+        
+    })
     
     Alpine.store('chat', {
         blur: true,
