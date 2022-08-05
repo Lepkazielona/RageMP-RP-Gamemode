@@ -56,7 +56,7 @@
                       }
                   } 
                   
-                  //mp.trigger('client::closeChat');
+                  mp.trigger('client::chat::closeChat');
                   $store.chat.message='' ;
                   setTimeout(()=> { $refs.chatref.scrollTo(0, $refs.chatref.scrollHeight);}, 0);
                   $el.blur()

@@ -14,6 +14,7 @@ namespace ClientSide.cef
             
             Events.Add("client::chat::sendMessageToServer", sendMessageToServer);
             Events.Add("client::chat::sendMessageToCef", sendMessageToCef);
+            Events.Add("client::chat::closeChat", closeChatEvent);
             RAGE.Input.Bind(VirtualKeys.T, false, openChat);
             //RAGE.Input.Bind(192, false, closeChat);
         }
@@ -35,6 +36,10 @@ namespace ClientSide.cef
             _chatOpen = false;
             RAGE.Ui.Cursor.Visible = false;
             CEF.browser.ExecuteJs("Alpine.store('chat').closeChat()");
+        }
+        private void closeChatEvent(object[] args)
+        {
+            closeChat();
         }
         
         private void sendMessageToServer(object[] args)
