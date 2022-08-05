@@ -21,7 +21,7 @@
 </style>
 <div x-data>
     <div class="py-2 px-2 h-16 flex space-x-2">
-        <div x-show="$store.hud.show" x-transition class="h-16 flex space-x-2">
+        <div x-show="$store.hud.hide" x-transition class="h-16 flex space-x-2">
             <button class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
                 <span class="p-1.5 material-symbols-outlined">
                     favorite
@@ -58,7 +58,7 @@
                 </span>
             </button>
         </div>
-        <button x-on:click="$store.hud.show = !$store.hud.show" class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
+        <button x-on:click="$store.hud.hide = !$store.hud.hide" class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
             <span class="p-1.5 material-symbols-outlined">
                 visibility_off
             </span>
