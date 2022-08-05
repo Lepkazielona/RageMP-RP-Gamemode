@@ -27,7 +27,7 @@
     !-->
 
         <div x-html="(await getUrl(`components/chatbox.html`)).data"></div>
-        <div class="absolute top-0 right-0 mt-6" x-html="(await getUrl(`components/hud.html`)).data"></div>
+        <div class="absolute top-0 right-0" x-html="(await getUrl(`components/hud.html`)).data"></div>
     </div>
     <script>
         var prod = true
