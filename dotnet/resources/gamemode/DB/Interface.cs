@@ -179,5 +179,78 @@ namespace DB
             }
             return null;
         }
+
+        public async Task<DB.User> searchUserByAuth(ulong RockstarID)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var user = context.Users
+                        .Where(b => b.RockstarID.Equals(RockstarID.ToString()))
+                        .ToList();
+                    return (user[0]);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+        public async Task<DB.User> searchUserByAuth(string serial)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var user = context.Users
+                        .Where(b => b.serial.Equals(serial))
+                        .ToList();
+                    return (user[0]);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+        public async Task<DB.User> searchUserById(int id)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var user = context.Users
+                        .Where(b => b.ID.Equals(id))
+                        .ToList();
+                    return (user[0]);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+        public async Task<DB.User> searchUserByUsername(string nickname)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var user = context.Users
+                        .Where(b => b.nickname.Equals(nickname))
+                        .ToList();
+                    return (user[0]);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
     }
 }

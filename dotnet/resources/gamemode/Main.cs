@@ -21,7 +21,6 @@ namespace RpGamemode
         [ServerEvent(Event.ResourceStart)]
         public void OnResourceStart()
         {
-            
             using (var context = new DB.DBContext())
             {
                 context.Database.EnsureCreated();
@@ -37,8 +36,9 @@ namespace RpGamemode
         public void OnPlayerConnected(Player player)
         {
             IDSystem.initializeID(player);
+         
+            Console.WriteLine(player.Serial);
             Console.WriteLine(player.SocialClubId);
-            Console.WriteLine(player.SocialClubName);
         }
         
         [Command("myid", "/myid")]
