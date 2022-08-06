@@ -28,8 +28,8 @@ namespace DB
                 connString = table["Database"]["ConnString"];
             }
 
-            optionsBuilder.UseNpgsql(connString);
-            //optionsBuilder.UseMySql(connString);
+            //optionsBuilder.UseNpgsql(connString);
+            optionsBuilder.UseMySql(connString);
 
         }
 
