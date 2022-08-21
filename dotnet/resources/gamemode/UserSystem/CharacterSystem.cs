@@ -1,4 +1,5 @@
-﻿using GTANetworkAPI;
+﻿using System;
+using GTANetworkAPI;
 using DB;
 
 namespace RpGamemode.UserSystem
@@ -17,8 +18,11 @@ namespace RpGamemode.UserSystem
             int pId = p.GetSharedData<int>("AccId");
             var a = new Interface().searchCharacterByOwner(pId).Result;
             RPApi.Chat.sendMsg(p,$"Postacie dla konta o id: {pId}");
+            
+            
             foreach (var b in a)
             {
+                Console.WriteLine(b.ID);
                 RPApi.Chat.sendMsg(p, b.name);
             }
         }

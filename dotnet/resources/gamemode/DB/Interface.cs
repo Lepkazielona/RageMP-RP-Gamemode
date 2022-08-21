@@ -154,7 +154,7 @@ namespace DB
                 await using (var context = new DBContext())
                 {
                     var characters = context.Characters
-                        .Where(b => b.ID.Equals(ownerId))
+                        .Where(b => b.User.ID.Equals(ownerId))
                         .ToList();
                     return characters;
                 }
