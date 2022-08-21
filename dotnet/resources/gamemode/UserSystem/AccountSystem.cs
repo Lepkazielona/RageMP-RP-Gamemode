@@ -14,7 +14,6 @@ namespace RpGamemode.UserSystem
             var b = new Interface().searchUserBySerial(p.Serial).Result;
             p.SendNotification($"R{a.Count} S{b.Count}");
             p.SendNotification( p.SocialClubId.ToString());
-            p.SendNotification($"{b[0].nickname}");
 
             
             if (a.Count == 0 || b.Count == 0)
@@ -25,6 +24,7 @@ namespace RpGamemode.UserSystem
             {
                 if (a.Count > 1)
                 {
+                    p.SendNotification($"{b[0].nickname}");
                     p.SendNotification("Dwa konta przypisane do tego urządzenia, wybierz jedno");
                 }
                 p.SetSharedData("AccId", a[0].ID);

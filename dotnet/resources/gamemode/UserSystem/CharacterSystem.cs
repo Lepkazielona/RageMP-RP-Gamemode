@@ -9,6 +9,7 @@ namespace RpGamemode.UserSystem
         [ServerEvent(Event.PlayerConnected)]
         public void onPlayerConnect(Player p)
         {
+            //Parse DB json and apply clothes and body
             
         }
 
@@ -22,8 +23,7 @@ namespace RpGamemode.UserSystem
             
             foreach (var b in a)
             {
-                Console.WriteLine(b.ID);
-                RPApi.Chat.sendMsg(p, b.name);
+                RPApi.Chat.sendMsg(p, $"[ID:{b.ID}] {b.name} {b.surname}");
             }
         }
     }

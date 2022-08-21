@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using RAGE;
-using RAGE.Elements;
+using RAGE.Game;
 using RAGE.Ui;
+using Player = RAGE.Elements.Player;
 
 namespace ClientSide
 {
@@ -14,10 +17,19 @@ namespace ClientSide
         public MainClient()
         {
             Events.OnPlayerReady += OnPlayerReady;
+            Events.Tick += OnTick;
+        }
+
+        private void OnTick(List<Events.TickNametagData> a)
+        {
+            //RAGE.Game.UIText.Draw(, 0.5f, 0.005f, 0, 255,255,255,255);
+            RAGE.Game.UIText.Draw($"X: {_player.Position.X} Y: {_player.Position.Y} Z: {_player.Position.Z}",new Point(700, 100), 0.5f, Color.Black, RAGE.Game.Font.ChaletLondon, true);
+            //RAGE.Game.Graphics.DrawDebugText($" X: {_player.Position.X} Z: {_player.Position.X} Y: {_player.Position.X}", 0.5f, 0.005f, 0, 255,255,255,255);
         }
         
         private void OnPlayerReady()
         {
+            
             /*
              * Key binds
              */
