@@ -147,29 +147,36 @@ namespace DB
             }
         }
 
-        public async Task<List<Character>> searchCharacter(int ID = -1, int ownerId = -1)
+        public async Task<List<Character>> searchCharacterByOwner(int ownerId)
         {
             try
             {
-                if (ID != -1)
+                await using (var context = new DBContext())
                 {
-                    await using (var context = new DBContext())
-                    {
-                        var characters = context.Characters
-                            .Where(b => b.ID.Equals(ID))
-                            .ToList();
-                        return characters;
-                    }
+                    var characters = context.Characters
+                        .Where(b => b.ID.Equals(ownerId))
+                        .ToList();
+                    return characters;
                 }
-                else if(ownerId != -1)
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            return null;
+        }
+        
+        public async Task<List<Character>> searchCharacterById(int Id)
+        {
+            try
+            {
+                await using (var context = new DBContext())
                 {
-                    await using (var context = new DBContext())
-                    {
-                        var characters = context.Characters
-                            .Where(b => b.ID.Equals(ID))
-                            .ToList();
-                        return characters;
-                    }
+                    var characters = context.Characters
+                        .Where(b => b.ID.Equals(Id))
+                        .ToList();
+                    return characters;
                 }
             }
             catch(Exception e)
@@ -180,16 +187,16 @@ namespace DB
             return null;
         }
 
-        public async Task<DB.User> searchUserByAuth(ulong RockstarID)
+        public async Task<List<DB.User>> searchUserByRiD(string rockstarID)
         {
             try
             {
                 await using (var context = new DBContext())
                 {
                     var user = context.Users
-                        .Where(b => b.RockstarID.Equals(RockstarID.ToString()))
+                        .Where(b => b.rockstarID.Equals(rockstarID))
                         .ToList();
-                    return (user[0]);
+                    return (user);
                 }
             }
             catch (Exception e)
@@ -198,7 +205,7 @@ namespace DB
                 return null;
             }
         }
-        public async Task<DB.User> searchUserByAuth(string serial)
+        public async Task<List<DB.User>> searchUserBySerial(string serial)
         {
             try
             {
@@ -207,7 +214,7 @@ namespace DB
                     var user = context.Users
                         .Where(b => b.serial.Equals(serial))
                         .ToList();
-                    return (user[0]);
+                    return (user);
                 }
             }
             catch (Exception e)

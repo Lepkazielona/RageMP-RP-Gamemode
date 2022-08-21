@@ -6,19 +6,29 @@ namespace RpGamemode.UserSystem
 {
     public class AccountSystem : Script
     {
-        //[ServerEvent(Event.PlayerConnected)]
-        [Command("/login")]
+        //[Command("login")]
+        [ServerEvent(Event.PlayerConnected)]
         private void LoginOnJoin(Player p)
         {
-            var a = new Interface().searchUserByAuth(p.SocialClubId).Result;
-            var b = new Interface().searchUserByAuth(p.SocialClubId).Result;
-            if (a != null && b != null)
-            {
-                p.SendNotification($"Succesfully logged in, on account {a.nickname}");
+            var a = new Interface().searchUserByRiD(p.SocialClubId.ToString()).Result;
+            var b = new Interface().searchUserBySerial(p.Serial).Result;
+            p.SendNotification($"R{a.Count} S{b.Count}");
+            p.SendNotification( p.SocialClubId.ToString());
+            p.SendNotification($"{b[0].nickname}");
+
+            
+            if (a.Count == 0 || b.Count == 0)
+            { 
+                p.SendNotification("Nie znaleziono kont z przypisanym twoim danymi");
             }
             else
             {
-                p.SendNotification("Nie zalogowano, stworz konto");
+                if (a.Count > 1)
+                {
+                    p.SendNotification("Dwa konta przypisane do tego urządzenia, wybierz jedno");
+                }
+                p.SetSharedData("AccId", a[0].ID);
+                p.SendNotification("Zalogowano");
             }
         }
     }
