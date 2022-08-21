@@ -1,0 +1,50 @@
+﻿<!-- 
+    Main gui
+!-->
+<!DOCTYPE html>
+<head>
+    <!-- Alpine JS !-->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Tailwind CSS !-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 
+    <script src="https://cdn.tailwindcss.com"></script>
+    !-->
+ 
+    <!-- Axios JS !-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <!-- store !-->
+    <script src="./store.js"></script>
+    
+</head>
+<style>
+    .font {font-family: 'Nanum Gothic', sans-serif;}
+    .disable-select {
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+</style>
+<body>
+    <div class="flex h-screen">
+        <div class="m-auto disable-select bg-opacity-75 bg-slate-600 rounded-lg h-4/6 w-1/5 ml-4">
+            Wale konia na ten desigh
+        </div>
+    </div>
+</body>
+
+<script>
+    var prod = true
+    function getUrl(url){
+        if(prod){
+            return axios.get(`http://package/cs_packages/cef/${url}`);
+        } else {
+            //console.log(axios.get(`./${url}`).data)
+            return (axios.get(`./${url}`));
+        }
+    }
+    //console.log(getUrl("components/chatbox.html"))
+</script>
