@@ -17,7 +17,7 @@ namespace DB
         public bool isEatable { get; set; }
 
         //public JsonObject
-        public JsonObject<string[]> param { get; set; }
+        //public JsonObject<string[]> param { get; set; }
 
     public virtual ICollection<Item> items { get; set; }
     }

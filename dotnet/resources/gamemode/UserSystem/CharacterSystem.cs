@@ -1,4 +1,5 @@
-﻿using GTANetworkAPI;
+﻿using System;
+using GTANetworkAPI;
 using DB;
 
 namespace RpGamemode.UserSystem
@@ -8,24 +9,21 @@ namespace RpGamemode.UserSystem
         [ServerEvent(Event.PlayerConnected)]
         public void onPlayerConnect(Player p)
         {
-            p.SendNotification("Wpisz komende '/postac' by wybrać swoją postać, wpisz /postac list by zobaczyć posiadane postacie");
+            
         }
 
         [Command("postac")]
-        public void cmdPostac(Player player, string arg1, string arg2)
+        public void cmdPostac(Player p)
         {
-            if (arg1 == "list")
+            int pId = p.GetSharedData<int>("AccId");
+            var a = new Interface().searchCharacterByOwner(pId).Result;
+            RPApi.Chat.sendMsg(p,$"Postacie dla konta o id: {pId}");
+            
+            
+            foreach (var b in a)
             {
-                var characters  = new Interface().searchCharacter(ownerId: 1).Result;
-                foreach (var p in characters)
-                {
-                    player.SendChatMessage(p.name);
-                }
-            }
-            else if (arg1 == "select")
-            {
-                
-                var characters  = new Interface().searchCharacter(ownerId: 1).Result;
+                Console.WriteLine(b.ID);
+                RPApi.Chat.sendMsg(p, b.name);
             }
         }
     }

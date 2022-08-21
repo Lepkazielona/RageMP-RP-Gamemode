@@ -147,29 +147,16 @@ namespace DB
             }
         }
 
-        public async Task<List<Character>> searchCharacter(int ID = -1, int ownerId = -1)
+        public async Task<List<Character>> searchCharacterByOwner(int ownerId)
         {
             try
             {
-                if (ID != -1)
+                await using (var context = new DBContext())
                 {
-                    await using (var context = new DBContext())
-                    {
-                        var characters = context.Characters
-                            .Where(b => b.ID.Equals(ID))
-                            .ToList();
-                        return characters;
-                    }
-                }
-                else if(ownerId != -1)
-                {
-                    await using (var context = new DBContext())
-                    {
-                        var characters = context.Characters
-                            .Where(b => b.ID.Equals(ID))
-                            .ToList();
-                        return characters;
-                    }
+                    var characters = context.Characters
+                        .Where(b => b.User.ID.Equals(ownerId))
+                        .ToList();
+                    return characters;
                 }
             }
             catch(Exception e)
@@ -178,6 +165,99 @@ namespace DB
                 return null;
             }
             return null;
+        }
+        
+        public async Task<List<Character>> searchCharacterById(int Id)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var characters = context.Characters
+                        .Where(b => b.ID.Equals(Id))
+                        .ToList();
+                    return characters;
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+            return null;
+        }
+
+        public async Task<List<DB.User>> searchUserByRiD(string rockstarID)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var user = context.Users
+                        .Where(b => b.rockstarID.Equals(rockstarID))
+                        .ToList();
+                    return (user);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+        public async Task<List<DB.User>> searchUserBySerial(string serial)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var user = context.Users
+                        .Where(b => b.serial.Equals(serial))
+                        .ToList();
+                    return (user);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+        public async Task<DB.User> searchUserById(int id)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var user = context.Users
+                        .Where(b => b.ID.Equals(id))
+                        .ToList();
+                    return (user[0]);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+        public async Task<DB.User> searchUserByUsername(string nickname)
+        {
+            try
+            {
+                await using (var context = new DBContext())
+                {
+                    var user = context.Users
+                        .Where(b => b.nickname.Equals(nickname))
+                        .ToList();
+                    return (user[0]);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
         }
     }
 }

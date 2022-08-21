@@ -27,6 +27,8 @@ namespace DB
                 TomlTable table = TOML.Parse(conf);
                 connString = table["Database"]["ConnString"];
             }
+
+            //optionsBuilder.UseNpgsql(connString);
             optionsBuilder.UseMySql(connString);
 
         }

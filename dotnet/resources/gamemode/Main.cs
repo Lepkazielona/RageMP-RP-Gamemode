@@ -21,7 +21,6 @@ namespace RpGamemode
         [ServerEvent(Event.ResourceStart)]
         public void OnResourceStart()
         {
-            
             using (var context = new DB.DBContext())
             {
                 context.Database.EnsureCreated();
@@ -36,16 +35,21 @@ namespace RpGamemode
         [ServerEvent(Event.PlayerConnected)]
         public void OnPlayerConnected(Player player)
         {
+            RPApi.Chat.sendMsg(player, "test");
             IDSystem.initializeID(player);
+         
+            Console.WriteLine(player.Serial);
             Console.WriteLine(player.SocialClubId);
-            Console.WriteLine(player.SocialClubName);
         }
         
         [Command("myid", "/myid")]
         public void CMD_MyID(Player player)
         { 
-            player.SendNotification("Twoje ID: " + player.GetSharedData<int>("ID"));
-            //player.SendNotification("twoje id   " + new IDSystem().getIDFromPlayer(player));
+        
+            //RPApi.Chat.sendMsg(player, "wssdasdasdakxncaksdnaskdnasknd");
+            //RPApi.Chat.sendMsg(player, $"ur id: {player.GetSharedData<int>("ID")}");
+            //player.SendNotification("Twoje ID: " + player.GetSharedData<int>("ID"));
+            player.SendNotification("twoje id   " + IDSystem.getID(player));
         }
         
     }

@@ -33,6 +33,7 @@ document.addEventListener('alpine:init', () => {
         },
         usrMsg(nickname, message) {
             this.converstion.push({ 'author': nickname, 'message': message, 'type': 'usermsg' })
+            $refs.chatref.scrollTo(0, $refs.chatref.scrollHeight);
         },
         clearChat() {
             this.converstion = []
