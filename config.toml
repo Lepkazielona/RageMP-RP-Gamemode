@@ -1,0 +1,2 @@
+[Database]
+ConnString = "server=localhost;port=3306;database=data;uid=root;pwd=1111"
