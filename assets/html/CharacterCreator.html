@@ -3,8 +3,12 @@
 !-->
 <!DOCTYPE html>
 <head>
-    <!-- Alpine JS !-->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine Plugins -->
+    <script defer src="https://unpkg.com/@alpinejs/mask@3.x.x/dist/cdn.min.js%22%3E"></script>
+ 
+    <!-- Alpine Core -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js%22%3E"></script>
+
     <!-- Tailwind CSS !-->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 
@@ -17,6 +21,7 @@
     <!-- store !-->
     <script src="./store.js"></script>
     
+
 </head>
 <style>
     .font {font-family: 'Nanum Gothic', sans-serif;}
@@ -27,11 +32,47 @@
    -moz-user-select: none; /* Firefox */
    -ms-user-select: none; /* Internet Explorer/Edge */
 }
+body {
+  background-image: url('https://media.discordapp.net/attachments/962464166919155763/1011748927239901294/unknown.png?width=1202&height=676');
+}
+hr.style-four {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
 </style>
 <body>
-    <div class="flex h-screen">
-        <div class="m-auto disable-select bg-opacity-75 bg-slate-600 rounded-lg h-4/6 w-1/5 ml-4">
-            Wale konia na ten desigh
+    <div class="flex h-screen"  x-data="">
+        <div class="p-8 m-auto disable-select bg-opacity-75 bg-slate-600 rounded-lg h-5/7 w-1/5 ml-4">
+            <h1 class="text-center text-3xl font text-white">Stwórz swoją postać!</h1>
+            <br>
+            <hr class="style-four">
+            <br>
+            <h1 class="text-center text-xl font text-white">WAŻNE!</h1>
+            <h1 class="text-center text-lg font text-white">Dane postaci muszą być zangielszczone.</h1>
+            <br>
+            <hr class="style-four">
+            <br>
+            <h1 class="text-center text-xl font text-white">Imię postaci</h1>
+            <input class="mt-1 px-3 py-2 bg-slate-600 border shadow-sm border-slate-600 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:ring-white block w-full rounded-md sm:text-sm focus:ring-1 text-white" type="text" id="fname" name="fname">
+            <br>
+            <hr class="style-four">
+            <br>
+            <h1 class="text-center text-xl font text-white">Nazwisko postaci</h1>
+            <input class="mt-1 px-3 py-2 bg-slate-600 border shadow-sm border-slate-600 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:ring-white block w-full rounded-md sm:text-sm focus:ring-1 text-white" type="text" id="fname" name="fname">
+            <br>
+            <hr class="style-four">
+            <br>
+            <h1 class="text-center text-xl font text-white">Data urodzenia postaci</h1>
+            <input x-mask="99/99/9999" placeholder="MM/DD/YYYY" class="mt-1 px-3 py-2 bg-slate-600 border shadow-sm border-slate-600 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:ring-white block w-full rounded-md sm:text-sm focus:ring-1 text-white" id="fname" name="fname">
+            <input x-mask="99/99/9999" placeholder="MM/DD/YYYY">
+            <br>
+            <hr class="style-four">
+            <br>
+            <div class="relative absolute bottom-0 right-0">
+                <button type="button" class="py-2 px-6 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">Utwórz</button>
+                <button type="button" class="absolute bottom-0 right-0 py-2 px-6 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">Anuluj i wyczyść</button>
+            </div>
         </div>
     </div>
 </body>
