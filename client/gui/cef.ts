@@ -1,7 +1,7 @@
 import "./chat"
 
-var guiBrowser = mp.browsers.new("package://assets/html/MainGui.html");
-//export default guiBrowser;
+const guiBrowser = mp.browsers.new("package://assets/html/MainGui.html");
+export default guiBrowser;
 var localPlayer = mp.players.local;
 //Object.assign(global, guiBrowser);
 

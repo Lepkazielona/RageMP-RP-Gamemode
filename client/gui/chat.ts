@@ -1,4 +1,4 @@
-//import { guiBrowser } from "./index";
+import guiBrowser from "./cef";
 
 
 //import { guiBrowser } from ".";
@@ -6,7 +6,7 @@
 //let guiBrowser = require("./index").guiBrowser
 
 //import guiBrowser from "@/index"
-/*
+
 var lastMessageTick:number = 0;
 var chatOpen:boolean = false;
 
@@ -15,10 +15,10 @@ mp.events.add("client::chat::sendMessageToCef", sendMessageToCef)
 mp.events.add("client::chat::closeChat", closeChat)
 //t
 mp.keys.bind(84, false, openChat)
-/*
+
 
 function sendMessageToServer(message:string){
-    mp.events.callRemote("server::chat::sendChatMessage");
+    mp.events.callRemote("server::chat::sendChatMessage", message);
 }
 
 function sendMessageToCef(author:string, message:string){
@@ -52,4 +52,3 @@ mp.events.add("render", () => {
         lastMessageTick = 0;
     }
 })
-*/
