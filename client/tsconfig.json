@@ -1,13 +1,12 @@
 {
 	"extends": "../tsconfig.base.json",
 	"compilerOptions": {
-		"types": ["../../node_modules/@ragempcommunity/types-client", "./@types"],
+		"types": ["../../node_modules/@ragempcommunity/types-client", "./@types", "node"],
 		"baseUrl": "./",
 		"paths": {
-			"@shared/*": ["../shared/*"],
 			"@/*": ["./*"]
 		}
 	},
-	"include": ["./**/*.ts", "../shared/**/*.ts"],
-	"exclude": ["../shared/**/*.d.ts"]
+	"include": ["./**/*.ts", "./gui/**.ts"],
+	//"exclude": ["../shared/**/*.d.ts"]
 }

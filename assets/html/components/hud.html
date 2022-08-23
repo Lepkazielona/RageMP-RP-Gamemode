@@ -1,0 +1,68 @@
+﻿<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
+    <script src="../store.js"></script>
+</head>
+
+<body>
+<style>
+    .font {font-family: 'Nanum Gothic', sans-serif;}
+    .disable-select {
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+</style>
+<div x-data>
+    <div class="py-2 px-2 h-16 flex space-x-2">
+        <div x-show="$store.hud.hide" x-transition class="h-16 flex space-x-2">
+            <button class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
+                <span class="p-1.5 material-symbols-outlined">
+                    favorite
+                </span>
+            </button>
+            <button class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
+                <span class="p-1.5 material-symbols-outlined">
+                    report
+                </span>
+            </button>
+            <button class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
+                <span class="p-1.5 material-symbols-outlined">
+                    report_off
+                </span>
+            </button>
+            <button class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
+                <span class="p-1.5 material-symbols-outlined">
+                    admin_panel_settings
+                </span>
+            </button>
+            <button class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
+                <span class="p-1.5 material-symbols-outlined">
+                    mail_lock
+                </span>
+            </button>
+            <button class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
+                <span class="p-1.5 material-symbols-outlined">
+                    rate_review
+                </span>
+            </button>
+            <button class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
+                <span class="p-1.5 material-symbols-outlined">
+                    admin_panel_settings
+                </span>
+            </button>
+        </div>
+        <button x-on:click="$store.hud.hide = !$store.hud.hide" class="disable-select bg-opacity-75 bg-slate-600 rounded-lg h-9 w-9 text-center text-2xl text-white">
+            <span class="p-1.5 material-symbols-outlined">
+                visibility_off
+            </span>
+        </button>
+    </div>
+</div>
+</body>

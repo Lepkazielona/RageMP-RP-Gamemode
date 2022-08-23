@@ -1,0 +1,71 @@
+﻿<head>
+    <!-- Alpine JS focus plugin !-->
+    <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+    <!-- Alpine JS !-->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Axios JS !-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js" integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- store !-->
+    <script src="../store.js"></script>
+    <!-- Tailwind CSS !-->
+    <link rel="stylesheet" href="../css/out.css">
+</head>
+
+<body>
+<div class="" x-data="{ message: '',
+            createMessage(){
+                converstion.push({ 'author': author, 'message': message});
+                 console.log(converstion);
+            }}" class="container"
+            >
+   
+    
+    <!-- Messages !-->
+    <div :class="$store.chat.blur ? 'opacity-25' : '' " class="bg-slate-600 rounded-lg text-black bg-opacity-75 py-2 px-2 scroll-smooth mt-2 ml-2 w-1/3">
+        <div x-ref="chatref" class="container overflow-y-scroll h-40 py-2 px-2 scrollbar-hide text-white">
+            <template x-for="i in $store.chat.converstion">
+                <div>
+                    <template x-if="i.type == 'nouser'">
+                        <p ><span x-text="i.message"></span></p>
+                    </template>
+                    <template x-if="i.type == 'usermsg'">
+                        <p class="text-white"><span x-text="i.author"/></span>: <span x-text="i.message"></span></p>
+                    </template>
+                </div>
+            </template>
+        </div>
+    
+    <!-- chat input
+                 @keydown="if($event.code = 'Backquote'){
+                                $store.chat.message =''; $el.blur(); mp.trigger('client::chat::closeChat');
+                              } "
+                                                @keydown="console.log($event);  if($event.keyCode == 192)$store.chat.closeChat()"
+
+    !-->
+
+        <textarea x-ref="textbox" id="textbox"
+                  @keydown="if($event.keyCode == 192)$store.chat.closeChat()"
+                  @keydown.enter.prevent="
+                  if ($store.chat.message.startsWith('/')){
+                    mp.invoke('command', $store.chat.message.substring(1))
+                    $store.chat.converstion.push({ 'message' : $store.chat.message, type: 'nouser' });
+                  } else {
+                      if ($store.chat.message !='' ){
+                        //$store.chat.converstion.push({ 'author' : $store.playerInfo.nickname, 'message' : $store.chat.message, type: 'usermsg' });
+                        mp.trigger('client::chat::sendMessageToServer', $store.chat.message);
+                      }
+                  } 
+                  
+                  mp.trigger('client::chat::closeChat');
+                  $store.chat.message='' ;
+                  setTimeout(()=> { $refs.chatref.scrollTo(0, $refs.chatref.scrollHeight);}, 0);
+                  $el.blur()
+                  if ($store.chat.converstion.length > 40) {
+                    $store.chat.converstion.shift();
+                  }
+                " 
+                style="resize: none" x-model="$store.chat.message" class="mt-1 px-3 py-2 bg-slate-600 border shadow-sm border-slate-600 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:ring-white block w-full rounded-md sm:text-sm focus:ring-1 text-white"/>
+    </div>
+</div>
+
+</body>

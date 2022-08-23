@@ -1,0 +1,44 @@
+﻿<!-- 
+    Main gui
+!-->
+<!DOCTYPE html>
+<head>
+    <!-- Alpine JS !-->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Tailwind CSS !-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 
+    <script src="https://cdn.tailwindcss.com"></script>
+    !-->
+ 
+    <!-- Axios JS !-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <!-- store !-->
+    <script src="./store.js"></script>
+    
+</head>
+<body class="bg-transparent">
+    <div x-data="{}">
+
+        <!--
+    <div x-html="const chatbox = './components/chatbox.html'; chatbox"></div>
+    <div x-html="(await axios.get(`./components/chatbox.html`)).data"></div>
+    !-->
+
+        <div x-html="(await getUrl(`components/chatbox.html`)).data"></div>
+        <div class="absolute top-0 right-0" x-html="(await getUrl(`components/hud.html`)).data"></div>
+    </div>
+    <script>
+        var prod = true
+        function getUrl(url){
+            if(prod){
+                return axios.get(`http://package/assets/html/${url}`);
+            } else {
+                //console.log(axios.get(`./${url}`).data)
+                return (axios.get(`./${url}`));
+            }
+        }
+        //console.log(getUrl("components/chatbox.html"))
+    </script>
+</body>

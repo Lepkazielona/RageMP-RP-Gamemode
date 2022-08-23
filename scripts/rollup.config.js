@@ -113,7 +113,11 @@ function copyFiles() {
 		},
 		{
 			from: jetpack.path('meta.xml'),
-			to: jetpack.path(buildOutput, './dotnet/gamemode/meta.xml')
+			to: jetpack.path(buildOutput, './dotnet/resources/gamemode/meta.xml')
+		},
+		{
+			from: jetpack.path('./assets/'),
+			to: jetpack.path(buildOutput, './client_packages/assets/')
 		}
 	);
 
@@ -194,4 +198,4 @@ const generateConfig = (options = {}) => {
 	};
 };
 
-export default [generateConfig({ isServer: false }), generateConfig({ isServer: false })];
+export default generateConfig({ isServer: false });
