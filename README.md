@@ -2,7 +2,7 @@
 
 This is my old project that i abandonned few months ago.
 
-Over 1k lines of code!!!
+Over 1 000 lines of code!!!
 
 ## What is it
 Unfinished Roleplay Gamemode for Rage MP (Multiplayer modification for GTA V), which I worked on in my spare time with a friend of mine during the summer of 2022
